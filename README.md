@@ -53,7 +53,23 @@ The example uses 420 cells and 60 genes, with 14 samples and a 12-primary-subjec
 
 ## Installation
 
-### Install the verified artifact
+### Install the public verified artifact (Python 3.11)
+
+The exact audited wheel is publicly downloadable from this repository; no GitHub
+login or source checkout is needed. The URL pins the clean software commit and
+wheel SHA256. This is GitHub distribution, not a PyPI release.
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --constraint "https://raw.githubusercontent.com/LCGaoZzz/scSLIDE-py/57605d55054a3c26b0d30721f696ef67eab1809d/constraints/verified-primary-py311.txt" \
+  "scslide-py[anndata] @ https://raw.githubusercontent.com/LCGaoZzz/scSLIDE-py/57605d55054a3c26b0d30721f696ef67eab1809d/artifacts/scslide_py-0.3.3-py3-none-any.whl#sha256=02043e3c1215320beca93c9ce58645f4fdebf29796dbbdc30d7ce00a580aacbd"
+python -m pip check
+```
+
+[Publication and download verification](docs/PUBLICATION.md)
+
+### Install the included artifact from a checkout
 
 From the repository root in a clean Python 3.11 environment:
 

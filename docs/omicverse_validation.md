@@ -44,7 +44,7 @@ human-cohort run, benchmark or confirmatory inference claim is made.
 
 [Code PR #1098](https://github.com/omicverse/omicverse/pull/1098) and
 [tutorial PR #145](https://github.com/omicverse/omicverse-tutorials/pull/145) must be
-reviewed and accepted upstream. Public backend installation is a release gate.
+reviewed and accepted upstream. The public backend installation gate has been completed; see [publication verification](PUBLICATION.md).
 Only an accepted tutorial commit may be used for the later `omicverse_guide`
 update; website deployment remains with maintainers.
 

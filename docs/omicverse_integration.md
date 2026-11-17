@@ -20,17 +20,19 @@ The exact reviewed backend is `scslide-py-0.3.3-02043e3c1215`; use
 private candidates with the same version string. Source builds remain distinct
 from the preserved wheel and sdist. No PyPI publication is claimed.
 
-## Release sequence
+## Public availability and remaining maintainer steps
 
-1. Preserve the original research repository privately and establish the clean
-   software repository/public installation endpoint; verify the downloaded wheel
-   against its SHA256. The clean software export and exact artifacts are prepared.
-2. Maintainers review and merge the linked OmicVerse code and tutorial PRs in
-   their chosen order once the public backend is available.
-3. Only after the tutorial is accepted, update `omicverse_guide` to the accepted,
+The clean software repository is now public. Both exact artifacts were downloaded
+without credentials and matched the audited SHA256 values. The complete original
+research repository remains private. See [publication verification](PUBLICATION.md)
+and the [public installation command](../README.md#installation).
+
+1. Maintainers review and merge the linked OmicVerse code and tutorial PRs in
+   their chosen order. Both are Ready for review; the backend is now publicly installable.
+2. Only after the tutorial is accepted, update `omicverse_guide` to the accepted,
    fetchable tutorial commit and let maintainers synchronize the website.
 
-Repository preparation, public distribution, upstream merge and website deployment
-are separate states. The tutorial submodule and published website have not been
-changed by this preparation. Native algorithms, frozen baselines and historical
-scientific results remain unchanged.
+The tutorial submodule and website have not been changed by this preparation.
+The separate upstream CI missing-`cv2` issue is documented in PR #1098 and the
+[validation receipt](omicverse_validation.md). Native algorithms, frozen research
+baselines and historical scientific results are unchanged.

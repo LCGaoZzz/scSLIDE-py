@@ -56,6 +56,22 @@
 
 ## 安装
 
+### 从公开地址安装（Python 3.11）
+
+已验收 wheel 现在可以匿名下载，无需 GitHub 登录或克隆仓库。下面的地址固定软件提交和 SHA256；当前为 GitHub 分发，未上传 PyPI。
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --constraint "https://raw.githubusercontent.com/LCGaoZzz/scSLIDE-py/57605d55054a3c26b0d30721f696ef67eab1809d/constraints/verified-primary-py311.txt" \
+  "scslide-py[anndata] @ https://raw.githubusercontent.com/LCGaoZzz/scSLIDE-py/57605d55054a3c26b0d30721f696ef67eab1809d/artifacts/scslide_py-0.3.3-py3-none-any.whl#sha256=02043e3c1215320beca93c9ce58645f4fdebf29796dbbdc30d7ce00a580aacbd"
+python -m pip check
+```
+
+[公开分发与下载验证记录](docs/PUBLICATION.md)
+
+### 从仓库副本安装
+
 在仓库根目录、独立 Python 3.11 环境中安装已验收的精确文件：
 
 ```bash
@@ -165,4 +181,4 @@ scSLIDE 特别适合样本差异涉及细胞状态混合、连续异质性和分
 
 ## OmicVerse 集成进展
 
-可选适配器 [PR #1098](https://github.com/omicverse/omicverse/pull/1098) 与配套教程 [PR #145](https://github.com/omicverse/omicverse-tutorials/pull/145) 已有真实后端测试和全新内核 Notebook 执行记录，等待上游审核合并。公开安装、教程子模块和网站同步是后续独立步骤，详见[集成状态](docs/omicverse_integration.md)和[验证回执](docs/omicverse_validation.md)。
+可选适配器 [PR #1098](https://github.com/omicverse/omicverse/pull/1098) 与配套教程 [PR #145](https://github.com/omicverse/omicverse-tutorials/pull/145) 已有真实后端测试和全新内核 Notebook 执行记录，等待上游审核合并。公开安装已验证；上游合并、教程子模块和网站同步仍是后续独立步骤，详见[集成状态](docs/omicverse_integration.md)和[验证回执](docs/omicverse_validation.md)。

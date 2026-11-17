@@ -1,0 +1,83 @@
+{
+  "repository": "https://github.com/LCGaoZzz/scSLIDE-py",
+  "repository_id": 1461743072,
+  "clean_root_commit": "57605d55054a3c26b0d30721f696ef67eab1809d",
+  "anonymous_repository_access": "PASS",
+  "files": [
+    {
+      "name": "scslide_py-0.3.3-py3-none-any.whl",
+      "url": "https://raw.githubusercontent.com/LCGaoZzz/scSLIDE-py/57605d55054a3c26b0d30721f696ef67eab1809d/artifacts/scslide_py-0.3.3-py3-none-any.whl",
+      "sha256": "02043e3c1215320beca93c9ce58645f4fdebf29796dbbdc30d7ce00a580aacbd",
+      "bytes": 129483,
+      "anonymous_download": "PASS"
+    },
+    {
+      "name": "scslide_py-0.3.3.tar.gz",
+      "url": "https://raw.githubusercontent.com/LCGaoZzz/scSLIDE-py/57605d55054a3c26b0d30721f696ef67eab1809d/artifacts/scslide_py-0.3.3.tar.gz",
+      "sha256": "782f4f662dc156a428ad4fcb40c306cc542781cdc1f6b2850a41b8a56d2d6bc0",
+      "bytes": 167684,
+      "anonymous_download": "PASS"
+    }
+  ],
+  "date": "2026-11-17",
+  "private_research_preserved": true,
+  "historical_git_parents_imported": false,
+  "numerical_source_tree": "1d178a697055f00411c4a82fec7e18cee2e9663c",
+  "initial_ci": {
+    "run_id": 44137259242,
+    "success": 5,
+    "optional_skipped": 1
+  },
+  "public_installation": {
+    "status": "PASS",
+    "python": "3.11.15",
+    "method": "pip install from public hash-pinned wheel and Python 3.11 constraints into an isolated target",
+    "wheel_sha256": "02043e3c1215320beca93c9ce58645f4fdebf29796dbbdc30d7ce00a580aacbd",
+    "installed_modules_matching_wheel": 14,
+    "package_import_from_install_target": true,
+    "dependency_closure": "PASS",
+    "target_distribution_count": 29,
+    "dependency_distributions_checked": 29,
+    "versions": {
+      "anndata": "0.11.4",
+      "array-api-compat": "1.16.0",
+      "asciitree": "1.0.0",
+      "cloudpickle": "3.1.2",
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "deprecated": "1.3.1",
+      "fasteners": "0.20",
+      "fonttools": "4.68.0",
+      "h5py": "3.14.0",
+      "joblib": "1.6.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.10.9",
+      "natsort": "8.4.0",
+      "numcodecs": "0.15.2",
+      "numpy": "2.2.6",
+      "packaging": "26.3",
+      "pandas": "2.3.3",
+      "pillow": "13.0.0",
+      "pyparsing": "3.3.3",
+      "python-dateutil": "4.0.0",
+      "pytz": "2026.6",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.16.3",
+      "scslide-py": "0.3.3",
+      "threadpoolctl": "3.8.0",
+      "tzdata": "2026.6",
+      "wrapt": "2.5.2",
+      "zarr": "2.18.7"
+    },
+    "actual_backend_integration": {
+      "passed": 1,
+      "skipped": 0,
+      "adapter_commit": "4d77e62894d7635788d81fddb48df98c04014718",
+      "case": "test_real_scslide_matches_direct_workflow_without_mutating_input"
+    }
+  },
+  "pypi_uploaded": false,
+  "upstream_merged": false,
+  "guide_pointer_changed": false,
+  "website_deployed": false
+}
