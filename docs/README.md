@@ -4,6 +4,7 @@
 
 | Task | Start here |
 |---|---|
+| Public distribution and hashes | [Publication receipt](PUBLICATION.md) |
 | Install and run | [Installation](../README.md#installation), [quickstart](../README.md#quickstart), [complete tutorial](tutorial.md) |
 | Migrate from R/Seurat | [Data and parameter mapping](R_TO_PY_MIGRATION.md), [one-time R export](../examples/export_seurat_for_scslide_py.R) |
 | Understand the implementation | [19-capability algorithm map](algorithm.md) |
