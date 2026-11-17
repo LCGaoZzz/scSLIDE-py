@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+title: "scslide-py: Native Python sample-level single-cell representations, trajectories, and descriptive differential expression"
+message: "If you use scslide-py in research workflows, please cite both this Python software package and the upstream scSLIDE / Seurat methodological works."
+type: software
+authors:
+  - name: "LCGaoZzz"
+version: "0.3.3"
+date-released: "2026-11-16"
+license: "MIT"
+repository-code: "https://github.com/LCGaoZzz/scSLIDE-py"
+keywords:
+  - single-cell RNA-seq
+  - sample-level analysis
+  - scSLIDE
+  - AnnData
+  - diffusion map
+  - partial least squares
+references:
+  - type: software
+    title: "scSLIDE: Single-cell Sample-Level Integration using Density Estimation"
+    authors:
+      - family-names: "Jiang"
+        given-names: "Longda"
+        orcid: "https://orcid.org/0000-0003-4964-6497"
+    repository-code: "https://github.com/satijalab/scSLIDE"
+    license: "MIT"
+  - type: article
+    title: "Integrated analysis of multimodal single-cell data"
+    authors:
+      - family-names: "Hao"
+        given-names: "Yuhan"
+      - family-names: "Hao"
+        given-names: "Stephanie"
+      - family-names: "Andersen-Nissen"
+        given-names: "Erica"
+      - family-names: "Satija"
+        given-names: "Rahul"
+    journal: "Cell"
+    year: 2021
+    volume: 184
+    issue: 13
+    start: 3573
+    end: 3587
+    doi: "10.1016/j.cell.2021.04.048"

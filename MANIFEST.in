@@ -1,0 +1,10 @@
+include LICENSE NOTICE CITATION.cff README.md README.zh-CN.md CHANGELOG.md
+recursive-include src *.py
+recursive-include tests *.py *.json
+recursive-include examples *.py *.R *.md
+recursive-include constraints *.txt
+recursive-include docs *.md
+prune artifacts
+prune validation
+prune docs/assets
+global-exclude __pycache__ *.py[cod] .DS_Store

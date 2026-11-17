@@ -1,0 +1,69 @@
+scslide-py Notice and Source Attribution
+========================================
+
+`scslide-py` is an independent native Python software package implementing
+sample-level single-cell representations, weighted nearest-neighbor landmark
+aggregation, diffusion trajectories, and R-compatible descriptive differential
+expression workflows.
+
+Packaging and native Python implementation:
+- Copyright (c) 2026 LCGaoZzz (MIT License; see `LICENSE`).
+- `scslide-py` is NOT an official package or endorsed distribution from
+  Satija Lab or the New York Genome Center.
+
+1. Upstream Methodological and API Specifications (Clean-Room Native Port)
+--------------------------------------------------------------------------
+The 19 public capabilities (`F01`–`F19`), mathematical contracts, parameter
+semantics, and reference profiles (`v6` and `legacy`) correspond to the
+published open-source R implementations below, both distributed under the MIT
+License:
+
+- `scSLIDE` (R package, v0.1.1, archived upstream reference `968dbde2`):
+  Copyright (c) 2024 scSLIDE authors (Longda Jiang, Satija Lab).
+  URL: https://github.com/satijalab/scSLIDE (MIT License).
+- `Seurat` (R package, v6.0.0 upstream reference `e6ba2b24`):
+  Copyright (c) Satija Lab and Collaborators (Rahul Satija, Longda Jiang,
+  Yuhan Hao, Tim Stuart, Andrew Butler, Paul Hoffman, et al.).
+  URL: https://github.com/satijalab/seurat (MIT License).
+
+All Python modules under `src/scslide/` are written natively in Python over
+NumPy, SciPy, pandas, scikit-learn, and matplotlib without bundling or linking
+upstream R or C++ source files and without calling `Rscript` or `rpy2` at
+runtime.
+
+2. Published Statistical Formulations Implemented Natively
+----------------------------------------------------------
+- Weighted Nearest Neighbor (WNN) & Sketching: Hao et al. (2021), Cell;
+  Hao et al. (2023), Nature Biotechnology.
+- Diffusion Maps (`destiny` locally scaled anisotropic Markov operator):
+  Haghverdi, Buettner & Theis (2015), Bioinformatics; Angerer et al. (2016),
+  Bioinformatics.
+- Principal Curves (`princurve` iterative polyline projection & Reinsch cubic
+  smoothing spline): Hastie & Stuetzle (1989), JASA; Green & Silverman (1994).
+- Gamma-Poisson Quasi-Likelihood GLM (`glmGamPoi` Cox-Reid profile likelihood
+  and empirical-Bayes dispersion shrinkage): Ahlmann-Eltze & Huber (2020),
+  Bioinformatics.
+- Partial Least Squares (`kernelpls`, `cppls`, `spls`): Dayal & MacGregor
+  (1997), J. Chemometrics; Indahl, Liland & Naes (2009), J. Chemometrics;
+  Chun & Keles (2010), JRSS-B.
+- Control-Referenced Batch Adjustment (`ComBat` & `CellANOVA`): Johnson, Li &
+  Rabinovic (2007), Biostatistics; Zhang et al. (2024), Nature Biotechnology.
+
+3. Runtime and Optional Third-Party Dependencies (Not Bundled)
+--------------------------------------------------------------
+`scslide-py` declares runtime and optional dependencies in `pyproject.toml`
+and invokes them via their public Python APIs (`numpy`, `pandas`, `scipy`,
+`scikit-learn`, `matplotlib`; optional `anndata`, `h5py`, `zarr`,
+`pynndescent`, `umap-learn`, `annoy`). None of those third-party libraries are
+vendored inside `scslide-py` source or binary distributions.
+
+4. Datasets and Non-Redistribution Policy
+-----------------------------------------
+No patient-level, donor-level, or clinical biological datasets are included in
+`scslide-py` wheel or sdist distributions. Bundled onboarding fixtures
+(`scslide.build_synthetic_cohort_fixture`, `scslide-calibrate`, and
+`tests/fixtures/lmc_contract.json`) are purely synthetic and MIT-licensed.
+Retrospective case evaluations referenced in repository documentation used
+publicly governed datasets (COMBAT Consortium / Ahern et al., 2022, Cell;
+SEA-AD Consortium MTG Microglia-PVM) locally without redistributing raw or
+processed human count matrices inside distributable package artifacts.

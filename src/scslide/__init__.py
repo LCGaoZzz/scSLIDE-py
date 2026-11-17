@@ -1,0 +1,277 @@
+"""scslide-py: Native Python full-stack implementation of scSLIDE sample-level single-cell analysis."""
+from __future__ import annotations
+
+from types import SimpleNamespace
+
+from .anndata import (
+    landmark_object_from_anndata,
+    load_rectangular_neighbors,
+    sample_object_from_anndata,
+    sample_object_to_anndata,
+    store_rectangular_neighbors,
+    write_sample_zarr,
+)
+from .batch import (
+    CellAnovaResult,
+    LazyBatchCorrectedOperator,
+    SampleComBatResult,
+    cellanova_calc_be,
+    correct_sample_combat,
+)
+from .de import (
+    GammaPoissonFit,
+    InferencePipelineSpec,
+    SubjectMappingResult,
+    aggregate_pseudobulk,
+    benjamini_hochberg,
+    benjamini_yekutieli,
+    binomial_thin_counts,
+    calibrate_traj_de_donor_permutation,
+    cpm,
+    filter_by_expr,
+    fit_gamma_poisson_glm,
+    resolve_subject_mapping,
+    run_confirmatory_oof_traj_de,
+    run_unified_permutation_inference,
+    stratified_subject_kfold,
+    traj_de_permutation_test,
+    traj_de_test,
+    trajectory_fold_change,
+)
+from .calibration import build_synthetic_cohort_fixture
+from .landmark import LandmarkObject, build_landmark_object, run_and_project_umap
+from .neighbors import (
+    NeighborResult,
+    compute_modality_weights,
+    find_mm_nn,
+    find_sm_nn,
+    landmark_neighbors,
+    resolve_effective_workers,
+)
+from .pipeline import PreparedSampleState, WorkflowResult, normalize_and_hvg, prepare_sample_object, run_scslide_workflow
+from .plot import (
+    OKABE_ITO,
+    plot_annotated_heatmap,
+    plot_calibration,
+    plot_clinical_scatter,
+    plot_landmark_object,
+    plot_sample_diffusion,
+    plot_severity_ridges,
+    plot_trajectory_bins,
+    sample_level_dim_plot,
+)
+from .sample import (
+    PearsonResidualOperator,
+    SampleLevelObject,
+    expected_counts,
+    extract_sample_metadata,
+    generate_sample_object,
+    landmark_matrix,
+    log_normalize,
+    normalize_chi_squared,
+    pearson_residuals,
+)
+from .sketch import leverage_scores, leverage_sketch, seurat_leverage_scores, sketch_data_by_group, uniform_sketch
+from .supervised import (
+    PLSModel,
+    compute_pls_r2_rmsep,
+    cppls_ondisk,
+    fit_pls,
+    kernelpls,
+    kernelpls_ondisk,
+    predict_pls,
+    project_pls_embeddings,
+    quick_cor_select,
+    quick_cor_test,
+    run_pls,
+    spls_fit,
+)
+from .trajectory import (
+    DiffusionMapResult,
+    PrincipalCurveResult,
+    compare_spectral_embeddings,
+    diffusion_style_embedding,
+    fit_principal_curve,
+    project_to_curve,
+    run_diffusion_map,
+)
+
+__version__ = "0.3.3"
+
+# Scanpy-inspired structured namespaces (pp / tl / pl / io) without monkey-patching scanpy
+pp = SimpleNamespace(
+    build_synthetic_cohort_fixture=build_synthetic_cohort_fixture,
+    normalize_and_hvg=normalize_and_hvg,
+    sketch_data_by_group=sketch_data_by_group,
+    seurat_leverage_scores=seurat_leverage_scores,
+    uniform_sketch=uniform_sketch,
+    leverage_sketch=leverage_sketch,
+    quick_cor_select=quick_cor_select,
+    quick_cor_test=quick_cor_test,
+    prepare_sample_object=prepare_sample_object,
+    correct_sample_combat=correct_sample_combat,
+    cellanova_calc_be=cellanova_calc_be,
+    resolve_subject_mapping=resolve_subject_mapping,
+    resolve_effective_workers=resolve_effective_workers,
+    binomial_thin_counts=binomial_thin_counts,
+)
+
+tl = SimpleNamespace(
+    fit_pls=fit_pls,
+    run_pls=run_pls,
+    predict_pls=predict_pls,
+    project_pls_embeddings=project_pls_embeddings,
+    kernelpls=kernelpls,
+    kernelpls_ondisk=kernelpls_ondisk,
+    cppls_ondisk=cppls_ondisk,
+    spls_fit=spls_fit,
+    find_sm_nn=find_sm_nn,
+    find_mm_nn=find_mm_nn,
+    compute_modality_weights=compute_modality_weights,
+    landmark_neighbors=landmark_neighbors,
+    landmark_matrix=landmark_matrix,
+    generate_sample_object=generate_sample_object,
+    normalize_chi_squared=normalize_chi_squared,
+    pearson_residuals=pearson_residuals,
+    expected_counts=expected_counts,
+    log_normalize=log_normalize,
+    run_diffusion_map=run_diffusion_map,
+    diffusion_style_embedding=diffusion_style_embedding,
+    fit_principal_curve=fit_principal_curve,
+    compare_spectral_embeddings=compare_spectral_embeddings,
+    aggregate_pseudobulk=aggregate_pseudobulk,
+    traj_de_test=traj_de_test,
+    traj_de_permutation_test=traj_de_permutation_test,
+    run_unified_permutation_inference=run_unified_permutation_inference,
+    run_confirmatory_oof_traj_de=run_confirmatory_oof_traj_de,
+    stratified_subject_kfold=stratified_subject_kfold,
+    calibrate_traj_de_donor_permutation=calibrate_traj_de_donor_permutation,
+    build_landmark_object=build_landmark_object,
+    run_and_project_umap=run_and_project_umap,
+    run_scslide_workflow=run_scslide_workflow,
+)
+
+pl = SimpleNamespace(
+    plot_calibration=plot_calibration,
+    plot_landmark_object=plot_landmark_object,
+    sample_level_dim_plot=sample_level_dim_plot,
+    plot_sample_diffusion=plot_sample_diffusion,
+    plot_clinical_scatter=plot_clinical_scatter,
+    plot_severity_ridges=plot_severity_ridges,
+    plot_trajectory_bins=plot_trajectory_bins,
+    plot_annotated_heatmap=plot_annotated_heatmap,
+)
+
+io = SimpleNamespace(
+    sample_object_to_anndata=sample_object_to_anndata,
+    sample_object_from_anndata=sample_object_from_anndata,
+    landmark_object_from_anndata=landmark_object_from_anndata,
+    store_rectangular_neighbors=store_rectangular_neighbors,
+    load_rectangular_neighbors=load_rectangular_neighbors,
+    write_sample_zarr=write_sample_zarr,
+)
+
+__all__ = [
+    "__version__",
+    "pp",
+    "tl",
+    "pl",
+    "io",
+    # Sample-level & normalization (F05, F06)
+    "SampleLevelObject",
+    "PearsonResidualOperator",
+    "expected_counts",
+    "landmark_matrix",
+    "log_normalize",
+    "pearson_residuals",
+    "normalize_chi_squared",
+    "extract_sample_metadata",
+    "generate_sample_object",
+    # Sketching (F15)
+    "leverage_scores",
+    "leverage_sketch",
+    "uniform_sketch",
+    "seurat_leverage_scores",
+    "sketch_data_by_group",
+    # Neighbors & WNN (F03, F04)
+    "NeighborResult",
+    "landmark_neighbors",
+    "find_sm_nn",
+    "find_mm_nn",
+    "compute_modality_weights",
+    "resolve_effective_workers",
+    # Supervised & PLS (F08, F10, F13, F18, F19)
+    "PLSModel",
+    "fit_pls",
+    "run_pls",
+    "predict_pls",
+    "project_pls_embeddings",
+    "quick_cor_test",
+    "quick_cor_select",
+    "kernelpls",
+    "kernelpls_ondisk",
+    "cppls_ondisk",
+    "spls_fit",
+    "compute_pls_r2_rmsep",
+    # Trajectory & Diffusion (F12)
+    "DiffusionMapResult",
+    "PrincipalCurveResult",
+    "diffusion_style_embedding",
+    "run_diffusion_map",
+    "fit_principal_curve",
+    "project_to_curve",
+    "compare_spectral_embeddings",
+    # Differential expression & calibrated inference (F16, WP2)
+    "GammaPoissonFit",
+    "SubjectMappingResult",
+    "InferencePipelineSpec",
+    "aggregate_pseudobulk",
+    "cpm",
+    "filter_by_expr",
+    "trajectory_fold_change",
+    "fit_gamma_poisson_glm",
+    "traj_de_test",
+    "traj_de_permutation_test",
+    "run_unified_permutation_inference",
+    "run_confirmatory_oof_traj_de",
+    "resolve_subject_mapping",
+    "stratified_subject_kfold",
+    "binomial_thin_counts",
+    "benjamini_hochberg",
+    "benjamini_yekutieli",
+    "calibrate_traj_de_donor_permutation",
+    # Batch correction (F02, F17)
+    "SampleComBatResult",
+    "CellAnovaResult",
+    "LazyBatchCorrectedOperator",
+    "correct_sample_combat",
+    "cellanova_calc_be",
+    # Landmark & UMAP (F01, F07, F11, F14, WP3)
+    "LandmarkObject",
+    "build_landmark_object",
+    "run_and_project_umap",
+    "plot_landmark_object",
+    "sample_level_dim_plot",
+    # Pipeline & orchestration (F09)
+    "PreparedSampleState",
+    "WorkflowResult",
+    "build_synthetic_cohort_fixture",
+    "normalize_and_hvg",
+    "prepare_sample_object",
+    "run_scslide_workflow",
+    # Plotting
+    "OKABE_ITO",
+    "plot_calibration",
+    "plot_sample_diffusion",
+    "plot_clinical_scatter",
+    "plot_severity_ridges",
+    "plot_trajectory_bins",
+    "plot_annotated_heatmap",
+    # AnnData & storage
+    "sample_object_to_anndata",
+    "sample_object_from_anndata",
+    "landmark_object_from_anndata",
+    "store_rectangular_neighbors",
+    "load_rectangular_neighbors",
+    "write_sample_zarr",
+]

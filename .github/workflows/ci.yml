@@ -1,0 +1,226 @@
+name: scslide-py CI
+
+on:
+  push:
+    branches: ["main", "feat/**"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      run_r_environment_probe:
+        description: "Probe R sessionInfo only (does not regenerate live R oracles)"
+        required: false
+        default: "false"
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-build:
+    name: Lint, Minimum Setuptools Check, Build & SDist Rebuild
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install build, lint, and metadata check tools
+        run: |
+          python -m pip install --upgrade pip build ruff twine virtualenv
+      - name: Static syntax & Ruff lint check
+        run: |
+          python -m compileall -q src tests examples
+          ruff check src tests examples
+      - name: Verify minimum supported build backend (setuptools==77.0.3 PEP 639 floor)
+        run: |
+          python -m venv /tmp/venv_min_setuptools
+          /tmp/venv_min_setuptools/bin/pip install --upgrade pip "setuptools==77.0.3"
+          /tmp/venv_min_setuptools/bin/python -c "import setuptools.build_meta as bm; print('min_wheel:', bm.build_wheel('/tmp/min_out' if __import__('os').makedirs('/tmp/min_out', exist_ok=True) or True else '.')); print('min_sdist:', bm.build_sdist('/tmp/min_out'))"
+      - name: Build primary sdist and wheel into isolated ci_dist & run twine check
+        run: |
+          python -m build --outdir ci_dist
+          python -m twine check --strict ci_dist/*
+          sha256sum ci_dist/* | tee ci_dist/SHA256SUMS
+      - name: Reconstruct wheel from sdist outside checkout & verify module parity
+        working-directory: /tmp
+        run: |
+          SDIST=$(ls "${GITHUB_WORKSPACE}"/ci_dist/scslide_py-*.tar.gz)
+          WHL_ORIG=$(ls "${GITHUB_WORKSPACE}"/ci_dist/scslide_py-*.whl)
+          mkdir -p /tmp/sdist_src_check /tmp/sdist_rebuild_wheel
+          cp "${SDIST}" /tmp/sdist_src_check/
+          python -m build --wheel /tmp/sdist_src_check/scslide_py-*.tar.gz --outdir /tmp/sdist_rebuild_wheel
+          WHL_REBUILT=$(ls /tmp/sdist_rebuild_wheel/scslide_py-*.whl)
+          python -c "
+          import hashlib, zipfile
+          def py_hashes(whl):
+              with zipfile.ZipFile(whl) as z:
+                  return {n: hashlib.sha256(z.read(n)).hexdigest() for n in sorted(z.namelist()) if n.startswith('scslide/') or n.endswith(('METADATA', 'entry_points.txt', 'LICENSE', 'NOTICE'))}
+          h1, h2 = py_hashes('${WHL_ORIG}'), py_hashes('${WHL_REBUILT}')
+          assert h1 == h2, f'Mismatch between primary wheel and sdist-rebuilt wheel: {h1} vs {h2}'
+          print(f'Verified {len(h1)} wheel module/metadata entries match identically from sdist rebuild.')
+          "
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scslide-py-dist
+          path: ci_dist/*
+
+  test-core-and-anndata-without-umap:
+    name: Clean Core-Only & [anndata] (No UMAP/Annoy Extras)
+    needs: lint-and-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          name: scslide-py-dist
+          path: ci_dist
+      - name: Verify Core-Only install (no anndata, no ann, no annoy) & CLI outside checkout
+        working-directory: /tmp
+        env:
+          PYTHONPATH: ""
+        run: |
+          python -m venv /tmp/venv_core_only
+          WHL=$(ls "${GITHUB_WORKSPACE}"/ci_dist/scslide_py-*.whl)
+          /tmp/venv_core_only/bin/pip install --upgrade pip "${WHL}"
+          /tmp/venv_core_only/bin/pip check
+          /tmp/venv_core_only/bin/scslide-calibrate --output-dir /tmp/core_cli_cal
+          /tmp/venv_core_only/bin/python -I -c "
+          import importlib.metadata as m, numpy as np, scslide as sl
+          assert 'site-packages' in sl.__file__, sl.__file__
+          d = sl.build_synthetic_cohort_fixture(as_anndata=False, n_subjects=6, n_repeat_subjects=0, cells_per_sample=12, n_genes=20)
+          mdl = sl.fit_pls(d['data'].toarray(), d['obs'][['Disease']], n_components=3, method='cppls')
+          lm_idx = np.linspace(0, len(d['obs']) - 1, 18, dtype=int)
+          lm_ids = [d['obs'].index[i] for i in lm_idx]
+          nn = sl.find_sm_nn(mdl.scores_, lm_idx, k_nn=4, query_ids=d['obs'].index, landmark_ids=lm_ids)
+          s_obj = sl.generate_sample_object(nn.nn_idx, group_by='Donor', k_nn=4, sample_for_cell=d['obs']['Donor'], landmark_ids=lm_ids, cell_ids=d['obs'].index, cell_metadata=d['obs'])
+          dm = sl.run_diffusion_map(s_obj, ncomp=2)
+          assert dm.embeddings.shape == (6, 2)
+          try:
+              sl.sample_object_to_anndata(s_obj)
+              raise AssertionError('Expected ImportError without [anndata]')
+          except ImportError:
+              pass
+          print('Verified core-only install:', m.version('scslide-py'), sl.__file__)
+          "
+      - name: Verify [anndata] install without [ann] & run copied tests outside checkout
+        working-directory: /tmp
+        env:
+          PYTHONPATH: ""
+        run: |
+          python -m venv /tmp/venv_anndata_only
+          WHL=$(ls "${GITHUB_WORKSPACE}"/ci_dist/scslide_py-*.whl)
+          /tmp/venv_anndata_only/bin/pip install --upgrade pip pytest "${WHL}[anndata]"
+          /tmp/venv_anndata_only/bin/pip check
+          /tmp/venv_anndata_only/bin/python -I -c "
+          import numpy as np, scslide as sl
+          assert 'site-packages' in sl.__file__, sl.__file__
+          nn = np.array([[1, 2], [2, 1], [1, 2], [2, 1]])
+          dist = np.array([[0.0, 0.5], [0.0, 0.5], [0.2, 0.4], [0.3, 0.5]])
+          cids, lids = ['c0', 'c1', 'c2', 'c3'], ['c0', 'c1']
+          try:
+              sl.run_and_project_umap(nn, nn_name='w', k_nn=2, umap_backend='auto', allow_fallback=False, cell_ids=cids, landmark_cell_ids=lids, nn_dist=dist)
+              raise AssertionError('Expected ImportError when umap-learn is absent')
+          except ImportError:
+              pass
+          out = sl.run_and_project_umap(nn, nn_name='w', k_nn=2, umap_backend='native', cell_ids=cids, landmark_cell_ids=lids, nn_dist=dist)
+          assert out['umap_info']['backend_effective'] == 'native'
+          "
+          rm -rf /tmp/copied_tests_noumap && cp -r "${GITHUB_WORKSPACE}/tests" /tmp/copied_tests_noumap
+          /tmp/venv_anndata_only/bin/pytest -c /dev/null -o pythonpath= --import-mode=importlib -v /tmp/copied_tests_noumap
+
+  test-full-matrix-and-golden-parity:
+    name: Full Extras (+Annoy), Out-of-Repo Tests, Stored Golden & Migration Quickstart
+    needs: lint-and-build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: scslide-py-dist
+          path: ci_dist
+      - name: Install wheel with all extras ([anndata,ann,annoy,dev]) & verify artifact identity
+        run: |
+          python -m pip install --upgrade pip
+          WHL=$(ls ci_dist/scslide_py-*.whl)
+          sha256sum "${WHL}"
+          python -m pip install "${WHL}[anndata,ann,annoy,dev]"
+          python -m pip check
+          python -I -c "import importlib.metadata as m, scslide as sl; assert 'site-packages' in sl.__file__; print('Installed:', m.version('scslide-py'), sl.__file__)"
+      - name: Separate collection accounting & out-of-checkout package regression suite
+        working-directory: /tmp
+        env:
+          PYTHONPATH: ""
+        run: |
+          rm -rf /tmp/ci_pkg_tests && cp -r "${GITHUB_WORKSPACE}/tests" /tmp/ci_pkg_tests
+          pytest -c /dev/null -o pythonpath= --import-mode=importlib --collect-only -q /tmp/ci_pkg_tests
+          pytest -c /dev/null -o pythonpath= --import-mode=importlib -v /tmp/ci_pkg_tests
+      - name: Verify real Annoy neighbor backend & build worker propagation
+        working-directory: /tmp
+        env:
+          PYTHONPATH: ""
+        run: |
+          python -I -c "
+          import numpy as np, scslide as sl
+          rng = np.random.default_rng(42)
+          e1, e2 = rng.normal(size=(120, 6)), rng.normal(size=(120, 4))
+          r1 = sl.find_mm_nn([e1, e2], np.arange(30), k_nn=5, knn_range=30, fix_wnn_weights=(0.5, 0.5), nn_method='annoy', n_jobs=1)
+          r2 = sl.find_mm_nn([e1, e2], np.arange(30), k_nn=5, knn_range=30, fix_wnn_weights=(0.5, 0.5), nn_method='annoy', n_jobs=2)
+          assert r1.params['backend_effective'] == 'annoy' and r1.params['workers_effective'] == 1
+          assert r2.params['workers_effective'] == 2 and r2.params['build_workers_effective'] == 2 and r2.params['query_workers_effective'] == 1
+          print('Verified real Annoy worker metadata:', r2.params)
+          "
+      - name: Verify validation helper and golden file hashes
+        env:
+          PYTHONPATH: ""
+        run: |
+          (cd validation/golden && sha256sum -c SHA256SUMS)
+          pytest -o pythonpath= -v validation/tools/test_compare_labelled.py
+      - name: Verify checksum-bound stored dual-R golden parity suite (47 stored checks + 6 negative controls)
+        env:
+          PYTHONPATH: ""
+        run: |
+          python validation/tools/run_parity_suite.py \
+            --repo-root . \
+            --oracle-root validation/golden \
+            --out-dir /tmp/ci_parity_verify
+      - name: Execute tutorial & portable R-migration quickstart outside checkout
+        if: matrix.python-version == '3.11'
+        working-directory: /tmp
+        env:
+          PYTHONPATH: ""
+        run: |
+          python -c "
+          from pathlib import Path
+          import re
+          md = Path('${{ github.workspace }}/docs/tutorial.md').read_text(encoding='utf-8')
+          blocks = re.findall(r'\`\`\`python\n(.*?)\`\`\`', md, flags=re.S)
+          assert len(blocks) >= 3, 'Expected >=3 runnable tutorial code blocks'
+          ns = {}
+          for idx, code in enumerate(blocks, 1):
+              exec(compile(code, f'tutorial_block_{idx}.py', 'exec'), ns)
+          print(f'Executed all {len(blocks)} tutorial code blocks against installed wheel.')
+          "
+          python "${GITHUB_WORKSPACE}/examples/r_to_python_migration_quickstart.py" --out-dir /tmp/ci_quickstart_out
+
+  optional-r-environment-probe:
+    name: Optional R SessionInfo Probe (Not Live Oracle Regeneration)
+    if: github.event_name == 'workflow_dispatch' && inputs.run_r_environment_probe == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.3.3"
+      - name: Print R sessionInfo only (does not regenerate stored R goldens)
+        run: |
+          Rscript -e "sessionInfo()"

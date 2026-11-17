@@ -1,0 +1,19 @@
+function (object = NULL, verbose = TRUE, ...) 
+{
+    if (verbose) {
+        cat("Performing Chi-squared-normalization\n")
+    }
+    ct_matrix <- object
+    if (any(ct_matrix < 0) || any(ct_matrix != round(x = ct_matrix))) {
+        stop("NormalizeChiSquared() requires raw counts (non-negative whole numbers). ", 
+            "Please check the 'layer' being used.")
+    }
+    col_Sums_ct <- SeuratObject::colSums(ct_matrix)
+    row_Sums_ct <- SeuratObject::rowSums(ct_matrix)
+    total_ct <- sum(ct_matrix)
+    expect_ct_matrix <- t(outer(col_Sums_ct, row_Sums_ct)/total_ct)
+    relative_matrix <- (ct_matrix - expect_ct_matrix)/sqrt(expect_ct_matrix)
+    relative_matrix[is.na(relative_matrix)] <- 0
+    relative_matrix <- as.matrix(relative_matrix)
+    return(relative_matrix)
+}

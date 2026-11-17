@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scslide-py"
+version = "0.3.3"
+description = "Native Python implementation of scSLIDE sample-level single-cell representations, trajectories, and descriptive differential expression"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "LCGaoZzz"}]
+license = "MIT"
+license-files = ["LICENSE", "NOTICE"]
+keywords = [
+  "single-cell",
+  "scRNA-seq",
+  "sample-level",
+  "scSLIDE",
+  "AnnData",
+  "trajectory",
+  "PLS",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+  "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+anndata = ["anndata>=0.10", "h5py>=3.8", "zarr>=2.16"]
+ann = ["pynndescent>=0.5", "umap-learn>=0.5"]
+annoy = ["annoy>=1.17"]
+dev = ["pytest>=7", "ruff>=0.5"]
+
+[project.urls]
+Repository = "https://github.com/LCGaoZzz/scSLIDE-py"
+Issues = "https://github.com/LCGaoZzz/scSLIDE-py/issues"
+Changelog = "https://github.com/LCGaoZzz/scSLIDE-py/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/LCGaoZzz/scSLIDE-py/blob/main/docs/RELEASE_SCOPE.md"
+
+[project.scripts]
+scslide-calibrate = "scslide.calibration:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E9", "F", "B", "BLE", "UP035"]
+ignore = ["B905"]

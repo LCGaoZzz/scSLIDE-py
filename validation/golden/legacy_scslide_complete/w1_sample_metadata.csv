@@ -1,0 +1,4 @@
+"","orig.ident","nCount_LMC","nFeature_LMC","nCount_RNA","nFeature_RNA","Sample","Donor"
+"A","SeuratProject",4,2,4,4,"A","A"
+"B","SeuratProject",6,3,4,4,"B","B"
+"C","SeuratProject",0,0,4,4,"C","C"

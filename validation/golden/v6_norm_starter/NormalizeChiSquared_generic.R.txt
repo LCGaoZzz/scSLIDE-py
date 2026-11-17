@@ -1,0 +1,4 @@
+function (object, ...) 
+{
+    UseMethod(generic = "NormalizeChiSquared", object = object)
+}

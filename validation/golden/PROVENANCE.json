@@ -1,0 +1,518 @@
+{
+  "dataset": "Programmatically generated small synthetic cohort and LMC edge-case fixture",
+  "profiles": {
+    "v6": {
+      "Seurat": "6.0.0",
+      "source_commit": "e6ba2b24149efc0ad62f9c48a9da527dfda4466d"
+    },
+    "legacy": {
+      "scSLIDE": "0.1.1",
+      "Seurat_full_suite": "6.0.0",
+      "source_commit": "968dbde299458100346c792aaf60f620c69f41fd"
+    }
+  },
+  "reference_generation": "Historical real R executions; not regenerated during repository preparation",
+  "scope": "Stored-reference regression, not universal parameter equivalence or new biological data",
+  "records": [
+    {
+      "path": "validation/golden/v6_full/f03_findmmnn_fixed_dist.csv",
+      "sha256": "3e4e96bc195312bac2d322fa9c9671b1305c28961f096732e96b4c0ad3d24c08",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f03_findmmnn_fixed_idx.csv",
+      "sha256": "b597b59f510279956fe788e17cb049d56f454ebb35f937617890c22564bbb1dd",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f03_findmmnn_learned_idx.csv",
+      "sha256": "c7e8a064ff1a908d69b95e1839c2abb2f399c45f8089de9c08c781119e565ce9",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f04_findsmnn_idx.csv",
+      "sha256": "ebb2434a3f87693bbb98b420b18a2e84c424d576e80b5d5a5cb1b9b8d5e14aa9",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f04_findsmnn_rann_exact_idx.csv",
+      "sha256": "3ea2511de989224bc968151cddfde94e21aefb5e91798bdfbc284704b6149c12",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f05_cohort_lmc_counts.csv",
+      "sha256": "22d853840aa80fc0e2132c2288b8ca847a16230faf2c7bd01cb6645c626a4780",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f06_cohort_pearson_residuals.csv",
+      "sha256": "2d9b02592e3065e8e6cd248367342bbbf85e7ebfe87e8274d40a177fea3d535a",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f08_project_cell_embeddings_pls.csv",
+      "sha256": "43d7d203147a49d6abeb7c0a428623ac39c368e63f5cf338ea8ae6e8d447cf59",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f09_prepare_e2e_lmc_counts.csv",
+      "sha256": "92a680688f6ed901fe1eedc493473b8c0d078b73a061457432424de9bbf1e6a6",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f10_quickcortest_cat_grouped.txt",
+      "sha256": "574a927c0756b0644ebb2dd48bbd91c6ec081ebc34eae85f66a28b210e3f905c",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f10_quickcortest_numeric.txt",
+      "sha256": "d834a7fb82aed1eef57f3f74c3f19c570c06dd32b19088e9c23ec81044d9d98c",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f12_diffusion_eigenvalues.csv",
+      "sha256": "deb12b0261f43f7063bd1d13e400f21792d626d5880e468e948bca0ac7954af6",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f12_diffusion_embeddings.csv",
+      "sha256": "ab62a6a55e4a23ce80feaa20b5b02ee96d155ed6d4394c1e02d4e87fc9894f59",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f12_principal_curve.csv",
+      "sha256": "f874934e867d7ad1c8cdd0d7c73169cb9d51d961190571c1e660bd7064af4c65",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f13_cppls_disease_projection.csv",
+      "sha256": "f2762b4464d64a41d258bd59aa26c57c7e440a5b7be60eeed204479f5aad9a07",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f13_cppls_disease_scores.csv",
+      "sha256": "b62bfd086ee1b7832b6302103ff1f324f3b410203b0b2eb8d4f0789a9d4c7d77",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f13_plsr_single_y_projection.csv",
+      "sha256": "75233718743f1e9642f69743f1ab359a9d094a389e7e495b6ff19f5bd9736775",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f13_plsr_single_y_scores.csv",
+      "sha256": "e986d3c1697893db2906cfbe6d033bb683c931f547038bf99e8dfd45b9901035",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f13_spls_projection.csv",
+      "sha256": "004e182ced3a834504f814d9d3ebb19d9e70810eda077957524a6834b416ee2e",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f13_spls_scores.csv",
+      "sha256": "e63e9f053f68be0438135b54afaed686044d24f2dabf951274683737ce2bc574",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f16_mono_pseudobulk_counts.csv",
+      "sha256": "f6798191cffc2b2f99fde8e5945be944c52b3705d4a00d256916f1f23d3c395f",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f16_mono_pseudobulk_data.csv",
+      "sha256": "c13319356f1b1831a66870047805524c62f8d9d29566d163297d5d32810afedd",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f16_mono_pseudobulk_meta.csv",
+      "sha256": "4cbe3246160db6710eb58095278d56e6531ad1fad30a96be6c7fedaa284a7150",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f16_trajdetest_complete.csv",
+      "sha256": "1b30fe7bcb760d52c372c3716f570fdd24402cfed4f0342820d1fd2f69b0b9da",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f18_cppls_ondisk_projection.csv",
+      "sha256": "6a12e422701a21df0069d14b60d639478afafb79b9e935bec501de2092000967",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f18_cppls_ondisk_scores.csv",
+      "sha256": "61cf0afce5d08887afbe56a5dd752e53a9167334f2f0940de8906c826db711ff",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/f19_kernelpls_ondisk_scores.csv",
+      "sha256": "760746a86004ba48a3f71181362d47554cfde7c6594e345daa934fee66660b87",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_all_hvgs.txt",
+      "sha256": "0705c88d663c1fefb32ba54644ba726a7d7115ffec50d3c319e9c8e4c28f4801",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_cell_metadata.csv",
+      "sha256": "f05de02281e293b8fbea1624d52b01ad77766f9c74621fad10b6f16b2e1a59ce",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_counts_genes_by_cells.csv",
+      "sha256": "9f8488b736fba692ab516050eb3e68a906e6a0984bd784bb1c49a54b2eb8fc02",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_initial_hvgs.txt",
+      "sha256": "dc50a35b47ccd235eaa2fd56fb011fb06aeb013fd1ca6473b08ac8ce04281bf4",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_landmark_cells.txt",
+      "sha256": "a7f409952841a87f657a91d28c86d38d7ed99f0e4fb388f8960e349158887dee",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_lognorm_genes_by_cells.csv",
+      "sha256": "6dff4887bfd23028db6c888471171c5790ba166d978a5b1d16c6976ca357f966",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_pca_embeddings.csv",
+      "sha256": "44ffe5dbd76fd74ac941a7a5f2c3c98d61d422d4b715d321a829be2349ee99e0",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_training_cells.txt",
+      "sha256": "80ee5a47d2a95473ff83a28b7623f1484d4439c39806a40b12588b0b4b629cda",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/shared_training_scaled_hvgs.csv",
+      "sha256": "dd977fd88c47cbd6efbc342e5dac3d21e2032a534001228dec65e6e3463e5f15",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/w1_lmc_counts_backend.csv",
+      "sha256": "f7a2a725b5ae097494adeca94e793731da69ccf681b45918f2215e32259657dc",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/w1_log_normalized_seurat_obj.csv",
+      "sha256": "8823b51fff762a277ee8bdf690d5e025c34aed0e3de85cd627fb6c21c671b217",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/w1_pearson_residuals_seurat_obj.csv",
+      "sha256": "a623bb273893092b426633713bdc70f3492c9b3598f150a41d8900dba53d7fe6",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_full/w1_sample_metadata.csv",
+      "sha256": "175c678663fa4cb05751f8ef6a3ca6f5d4eccddb3a41f34483fccbf779c1c12a",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_norm_starter/HASHING_NOTE.txt",
+      "sha256": "db36f8d2a6adece56f85f673ec72e85daa91616f4c99e53199a94150a72fabfb",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_norm_starter/NormalizeChiSquared_default.R.txt",
+      "sha256": "2e4d09a6f1ed39b3b31fc0ee64268fa7b75f5319bd3560409dbbdd7ed27ef2f7",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_norm_starter/NormalizeChiSquared_generic.R.txt",
+      "sha256": "496336fed169ac21a317540940c2790fb23a6b24a55b9933561d07e3872d337e",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_norm_starter/independence_expected_formula_sidecar.csv",
+      "sha256": "db2bcb8bb0364383bcb2f88c073c0a72b355015baebaeb4241cc59bc0d7eada2",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_norm_starter/input.csv",
+      "sha256": "add31288feb6a0673590366ad81f47530cf41365e01ec0076480e8fef085d96f",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/v6_norm_starter/pearson_residuals_backend.csv",
+      "sha256": "e05408cf3344a3198b9019cc4a570cb222d6332e9518cd6005a5d4eb7daeaa0a",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f01_landmark_correlations.csv",
+      "sha256": "18b742160386dd206e79a7ff79603f59ccc5108450f1a22de79896c3bdf51bea",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f01_landmark_wnn_umap.csv",
+      "sha256": "26f92e7d4a0ab50bd61c89f0266eea35c4b734266b603d9ae75bcaa3856a03c8",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f02_combat_nonparam_posvar_subtraction.csv",
+      "sha256": "d4ac21598746c752c3bd118f31002a433fc8f7d48234dc496d67fb89f7b9325a",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f02_combat_param_subtraction.csv",
+      "sha256": "922fc2fbf0c6bf119193031ae6308add46c16817b10d062a12b745f36bf470bb",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f02_combat_regression_atten.csv",
+      "sha256": "18ec77c2c21f0977f85e6d063cdf59f022ea498078995ccef0b69ccdd23ecde7",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f03_findmmnn_fixed_dist.csv",
+      "sha256": "6100b06a7050ab33fceb97f56941413a0fecc4432a005c4c94aa72bd21c66106",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f03_findmmnn_fixed_idx.csv",
+      "sha256": "b597b59f510279956fe788e17cb049d56f454ebb35f937617890c22564bbb1dd",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f03_findmmnn_learned_idx.csv",
+      "sha256": "c7e8a064ff1a908d69b95e1839c2abb2f399c45f8089de9c08c781119e565ce9",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f04_findsmnn_idx.csv",
+      "sha256": "ebb2434a3f87693bbb98b420b18a2e84c424d576e80b5d5a5cb1b9b8d5e14aa9",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f04_findsmnn_rann_exact_idx.csv",
+      "sha256": "3ea2511de989224bc968151cddfde94e21aefb5e91798bdfbc284704b6149c12",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f05_cohort_lmc_counts.csv",
+      "sha256": "22d853840aa80fc0e2132c2288b8ca847a16230faf2c7bd01cb6645c626a4780",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f06_cohort_pearson_residuals.csv",
+      "sha256": "2d9b02592e3065e8e6cd248367342bbbf85e7ebfe87e8274d40a177fea3d535a",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f08_predict_pls_seurat.csv",
+      "sha256": "a831902bda6df1909a5e55da23e504d9206a6f9d28a66baafb08afdb50ac9761",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f08_project_cell_embeddings_pls.csv",
+      "sha256": "e708d2140fffa569b3da5a5a03440cf5cc367a9ffeb417450273317d4112e9c1",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f09_prepare_e2e_lmc_counts.csv",
+      "sha256": "92a680688f6ed901fe1eedc493473b8c0d078b73a061457432424de9bbf1e6a6",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f10_quickcortest_cat_grouped.txt",
+      "sha256": "574a927c0756b0644ebb2dd48bbd91c6ec081ebc34eae85f66a28b210e3f905c",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f10_quickcortest_numeric.txt",
+      "sha256": "d834a7fb82aed1eef57f3f74c3f19c570c06dd32b19088e9c23ec81044d9d98c",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f11_projected_umap.csv",
+      "sha256": "3a6e16e1b5fc3a557f5c6830cf8b52e5e930e3fb96f41a6a84c532accf7f26a9",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f12_diffusion_eigenvalues.csv",
+      "sha256": "deb12b0261f43f7063bd1d13e400f21792d626d5880e468e948bca0ac7954af6",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f12_diffusion_embeddings.csv",
+      "sha256": "ab62a6a55e4a23ce80feaa20b5b02ee96d155ed6d4394c1e02d4e87fc9894f59",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f12_principal_curve.csv",
+      "sha256": "f874934e867d7ad1c8cdd0d7c73169cb9d51d961190571c1e660bd7064af4c65",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f13_cppls_disease_projection.csv",
+      "sha256": "f2762b4464d64a41d258bd59aa26c57c7e440a5b7be60eeed204479f5aad9a07",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f13_cppls_disease_scores.csv",
+      "sha256": "b62bfd086ee1b7832b6302103ff1f324f3b410203b0b2eb8d4f0789a9d4c7d77",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f13_plsr_single_y_projection.csv",
+      "sha256": "75233718743f1e9642f69743f1ab359a9d094a389e7e495b6ff19f5bd9736775",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f13_plsr_single_y_scores.csv",
+      "sha256": "e986d3c1697893db2906cfbe6d033bb683c931f547038bf99e8dfd45b9901035",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f13_spls_projection.csv",
+      "sha256": "004e182ced3a834504f814d9d3ebb19d9e70810eda077957524a6834b416ee2e",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f13_spls_scores.csv",
+      "sha256": "e63e9f053f68be0438135b54afaed686044d24f2dabf951274683737ce2bc574",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f16_mono_pseudobulk_counts.csv",
+      "sha256": "f6798191cffc2b2f99fde8e5945be944c52b3705d4a00d256916f1f23d3c395f",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f16_mono_pseudobulk_data.csv",
+      "sha256": "c13319356f1b1831a66870047805524c62f8d9d29566d163297d5d32810afedd",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f16_mono_pseudobulk_meta.csv",
+      "sha256": "4cbe3246160db6710eb58095278d56e6531ad1fad30a96be6c7fedaa284a7150",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f16_trajdetest_complete.csv",
+      "sha256": "1b30fe7bcb760d52c372c3716f570fdd24402cfed4f0342820d1fd2f69b0b9da",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f17_cellanova_corrected.csv",
+      "sha256": "c2ab78559c8a4a3fe31cb518b011381fb338a7db1ae2f679580cb19b1d6fe001",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f18_cppls_ondisk_projection.csv",
+      "sha256": "17803f4213cd19632b6bbef49b57c2a7370d7919fbe59e62b87e398f5d0efb32",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f18_cppls_ondisk_scores.csv",
+      "sha256": "57a0e8c243fd86624cbcfd2217b499fc31951d6525d7f825d08bb5a35165b6e9",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/f19_kernelpls_ondisk_scores.csv",
+      "sha256": "760746a86004ba48a3f71181362d47554cfde7c6594e345daa934fee66660b87",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_all_hvgs.txt",
+      "sha256": "0705c88d663c1fefb32ba54644ba726a7d7115ffec50d3c319e9c8e4c28f4801",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_cell_metadata.csv",
+      "sha256": "f05de02281e293b8fbea1624d52b01ad77766f9c74621fad10b6f16b2e1a59ce",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_counts_genes_by_cells.csv",
+      "sha256": "9f8488b736fba692ab516050eb3e68a906e6a0984bd784bb1c49a54b2eb8fc02",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_initial_hvgs.txt",
+      "sha256": "dc50a35b47ccd235eaa2fd56fb011fb06aeb013fd1ca6473b08ac8ce04281bf4",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_landmark_cells.txt",
+      "sha256": "a7f409952841a87f657a91d28c86d38d7ed99f0e4fb388f8960e349158887dee",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_lognorm_genes_by_cells.csv",
+      "sha256": "6dff4887bfd23028db6c888471171c5790ba166d978a5b1d16c6976ca357f966",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_pca_embeddings.csv",
+      "sha256": "44ffe5dbd76fd74ac941a7a5f2c3c98d61d422d4b715d321a829be2349ee99e0",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_training_cells.txt",
+      "sha256": "80ee5a47d2a95473ff83a28b7623f1484d4439c39806a40b12588b0b4b629cda",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/shared_training_scaled_hvgs.csv",
+      "sha256": "dd977fd88c47cbd6efbc342e5dac3d21e2032a534001228dec65e6e3463e5f15",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/w1_lmc_counts_backend.csv",
+      "sha256": "f7a2a725b5ae097494adeca94e793731da69ccf681b45918f2215e32259657dc",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/w1_log_normalized_seurat_obj.csv",
+      "sha256": "8823b51fff762a277ee8bdf690d5e025c34aed0e3de85cd627fb6c21c671b217",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/w1_pearson_residuals_seurat_obj.csv",
+      "sha256": "a623bb273893092b426633713bdc70f3492c9b3598f150a41d8900dba53d7fe6",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_scslide_complete/w1_sample_metadata.csv",
+      "sha256": "175c678663fa4cb05751f8ef6a3ca6f5d4eccddb3a41f34483fccbf779c1c12a",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_norm_starter/HASHING_NOTE.txt",
+      "sha256": "db36f8d2a6adece56f85f673ec72e85daa91616f4c99e53199a94150a72fabfb",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_norm_starter/NormalizeChiSquared_default.R.txt",
+      "sha256": "bf44bfce29cf6c325d3420606f54adc1793d65c80a157a274cd76c0b39b31da9",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_norm_starter/NormalizeChiSquared_generic.R.txt",
+      "sha256": "496336fed169ac21a317540940c2790fb23a6b24a55b9933561d07e3872d337e",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_norm_starter/independence_expected_formula_sidecar.csv",
+      "sha256": "db2bcb8bb0364383bcb2f88c073c0a72b355015baebaeb4241cc59bc0d7eada2",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_norm_starter/input.csv",
+      "sha256": "add31288feb6a0673590366ad81f47530cf41365e01ec0076480e8fef085d96f",
+      "kind": "synthetic_R_reference"
+    },
+    {
+      "path": "validation/golden/legacy_norm_starter/pearson_residuals_backend.csv",
+      "sha256": "e05408cf3344a3198b9019cc4a570cb222d6332e9518cd6005a5d4eb7daeaa0a",
+      "kind": "synthetic_R_reference"
+    }
+  ]
+}

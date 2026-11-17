@@ -1,0 +1,1 @@
+Hash all files with an external SHA256 manifest; do not hash the manifest inside itself.
